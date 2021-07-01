@@ -25,7 +25,7 @@ SECRET_KEY = 'syvjpg(n7mdg(e3qz4%(z&%k&)+t@m)kt0c80@1827ppcew&-3'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ['127.0.0.1', 'tryadfhostdomain.com']
+ALLOWED_HOSTS = ['127.0.0.1', 'adfsystemtesttry.herokuapp.com']
 
 
 # Application definition
