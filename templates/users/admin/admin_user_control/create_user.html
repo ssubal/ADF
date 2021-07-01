@@ -1,0 +1,36 @@
+{% extends 'users/admin/base.html' %}
+
+{% block page_title %}
+<p>Create New User</p> 
+{% endblock page_title %}
+
+{% block main_content %}
+
+<!-- Main content -->
+    <section class="content">
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-md-12">
+            <!-- general form elements -->
+            <div class="card card-primary">
+              <div class="card-header">
+                <h3 class="card-title">Add User</h3>
+              </div>
+              <!-- /.card-header -->
+                {%  url 'users:create_user_save' as action_path %}
+                {% include 'users/admin/admin_user_control/create_user_form.html' with messages=messages form=form action_path=action_path button_text="Add User" %}
+                
+              
+            </div>
+            <!-- /.card -->
+
+          </div>  
+        </div>
+      </div>
+    </section>
+     <!-- /.content -->
+
+{% endblock main_content %}
+
+
+            

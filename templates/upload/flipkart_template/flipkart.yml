@@ -1,0 +1,21 @@
+# -*- coding: utf-8 -*-
+issuer : Flipkart
+keywords:
+- Flipkart
+fields:
+  amount: Grand Total\s+\W\s+(\d+\d+\d+.\d+)
+  date: Invoice Date:\s+([0-9]{2}-[0-9]{2}-[0-9]{4})
+  invoice_number: Invoice Number \W (\w{2,})
+# tables:
+#     start: Product\s+Title\s+Qty\s+Gross Amount \W\s+Discount \W\s+Taxable Value \W\s+IGST \W\s+Total \W
+#     end: \s+Total
+#     body: (?P<Description>.+)\s+(?P<Title>.+)\s+(?P<Quantity>.+)\s+(?P<Gross Amount>.+)\s+(?P<discount>.+)\s+(?P<Tax>.+)\s+(?P<IGST>.+)\s+(?P<price>.+)
+options:
+  remove_whitespace: false
+  currency: INR
+  decimal_separator: '.'
+  date _formats:
+    - '%d%m%Y' 
+  languages:
+    - en
+    

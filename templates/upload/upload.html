@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html>
+<style>
+
+body{
+  background-color: antiquewhite;
+  font-family:arial;
+  font-size:15px;
+    }
+
+#container1{
+  left              :  50%;
+  top               :  50%;
+  position          :  absolute;
+  transform         :  translate(-50%, -65%);
+  width             :  450px;
+  margin            :  auto;
+  border            :  1px solid black;
+  padding           :  0px 20px 20px 20px;
+  border-radius     :  0px;
+  background-color  :  beige;
+  min-height        :  400px;
+
+        }
+#container2{
+  left              :  50%;
+  top               :  50%;
+  position          :  absolute;
+  transform         :  translate(-50%, -75%);
+  width             :  450px;
+  margin            :  auto;
+  border            :  1px solid black;
+  padding           :  0px 20px 20px 20px;
+  border-radius     :  0px;
+  background-color  :  beige;
+  min-height        :  150px;
+  
+  
+        }
+
+hr {  
+  border: 1px solid blueviolet;  
+  margin-bottom: 25px;  
+} 
+  
+li{
+  list-style: none;
+  }
+
+label{
+  display:inline-block;
+  width:150px;
+    }
+
+.uploadbtn {  
+  background-color: green;  
+  color: white;  
+  padding: 15px 15px;  
+  margin: 8px 0;  
+  border: none;  
+  cursor: pointer;  
+  width: 90%;  
+  opacity: 0.9;  
+}  
+.uploadbtn:hover {  
+  opacity: 1;  
+} 
+
+</style>  
+<head>
+  <title>ADF | Document Upload</title>
+</head> 
+<body> 
+
+  {% if type == "Invoice" %}
+
+    <div id="container1">
+    <center><h1>Upload Documents</h1></center>
+    <hr>
+      <form action="Update" method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <ul>
+        <li>
+        <label>Document Type:</label>
+        <input type="text" name="doc_type" value="Invoice" size="9" readonly/><br /><br />
+        <label for="Issuer">Select Issuer:</label>
+        <select id="type" name="Issuer">
+          <option value="Amazon">Amazon</option>
+          <option value="Flipkart">Flipkart</option>
+          <option value="Oyo">Oyo</option>
+        </select><br /><br />
+        <label for="myfile">Choose File:</label>
+        <input type="file" id="myfile" name="myfile" multiple="" /><br /><br />
+        <label for="myfile">Choose Folder:</label>
+        <input type="file" id="myfile" name="myfile" webkitdirectory multiple=""/><br /><br />
+        <button type="submit" class="uploadbtn">Upload</button><br /><br />
+        <a href="{% url 'users:user_home' %}"><< Go Back To Home</a>   
+      </li>
+      </ul>
+      </form>
+    </div>
+
+    {% elif type == "Email" %}
+    
+    <div id="container1">
+    <center><h1>Upload Documents</h1></center>
+    <hr>
+      <form action="Update" method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <ul>
+        <li> 
+        <label>Document Type:</label>
+        <input type="text" name="doc_type" value="Email" size="9" readonly/><br /><br />
+        <label for="myfile">Choose File:</label>
+        <input type="file" id="myfile" name="myfile" multiple="" /><br /><br />
+        <label for="myfile">Choose Folder:</label>
+        <input type="file" id="myfile" name="myfile" webkitdirectory multiple=""/><br /><br />
+        <button type="submit" class="uploadbtn">Upload</button><br /><br />
+        <a href="{% url 'users:user_home' %}"><< Go Back To Home</a>   
+      </li>
+      </ul>
+      </form>
+    </div>
+
+    {% elif type == "Others" %}
+    
+    <div id="container1">
+    <center><h1>Upload Documents</h1></center>
+    <hr>
+      <form action="Update" method="post" enctype="multipart/form-data">
+        {% csrf_token %} 
+        <ul>
+        <li>
+        <label>Document Type:</label>
+        <input type="text" name="doc_type" value="Others" size="9" readonly/><br /><br />
+        <label for="myfile">Choose File:</label>
+        <input type="file" id="myfile" name="myfile" multiple="" /><br /><br />
+        <label for="myfile">Choose Folder:</label>
+        <input type="file" id="myfile" name="myfile" webkitdirectory multiple=""/><br /><br />
+        <button type="submit" class="uploadbtn">Upload</button><br /><br />
+        <a href="{% url 'users:user_home' %}"><< Go Back To Home</a>   
+      </li>
+      </ul>
+      </form>
+    </div>
+
+    {% else %}
+    <div id="container2">
+    <center><h1>Select Document Type</h1></center>
+    <hr> 
+      <form action="Update" method="get">
+  
+        <label for="type"></label>
+        <select id="type" name="type">
+          <option value="Invoice">Invoice</option>
+          <option value="Email">Email</option>
+          <option value="Others">Others</option>
+        </select>
+        <input type="submit"/><br /><br />
+        
+      </form>
+    
+    </div>
+  
+  {% endif%} 
+
+</body>
+</html>

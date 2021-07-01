@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html>
+<style>
+
+body{
+  background-color: antiquewhite;
+  font-family:arial;
+  font-size:15px;
+    }
+
+#container1{
+  left              :  50%;
+  top               :  50%;
+  position          :  absolute;
+  transform         :  translate(-50%, -60%);
+  width             :  450px;
+  margin            :  auto;
+  border            :  1px solid black;
+  padding           :  0px 20px 20px 20px;
+  border-radius     :  0px;
+  background-color  :  beige;
+  min-height        :  400px;
+
+        }
+#container2{
+  left              :  50%;
+  top               :  50%;
+  position          :  absolute;
+  transform         :  translate(-50%, -75%);
+  width             :  450px;
+  margin            :  auto;
+  border            :  1px solid black;
+  padding           :  0px 20px 20px 20px;
+  border-radius     :  0px;
+  background-color  :  beige;
+  min-height        :  150px;
+  
+  
+        }
+
+hr {  
+  border: 1px solid blueviolet;  
+  margin-bottom: 25px;  
+} 
+  
+li{
+  list-style: none;
+  }
+
+label{
+  display:inline-block;
+  width:150px;
+    }
+
+.submitbtn {  
+  background-color: green;  
+  color: white;  
+  padding: 15px 15px;  
+  margin: 8px 0;  
+  border: none;  
+  cursor: pointer;  
+  width: 90%;  
+  opacity: 0.9;  
+}  
+.submitbtn:hover {  
+  opacity: 1;  
+} 
+
+</style>  
+
+</style>  
+<head>
+  <title>ADF | Document Search</title>
+</head> 
+<body> 
+  
+  {% if type == "Invoice" %}
+  <div id="container1">
+  <center><h1>Search Documents</h1></center>
+  <hr>
+  <form action="search" method="post" target="_self">
+    {% csrf_token %}
+    <ul>
+    <li> 
+    <label>Document Type:</label>
+    <input type="text" name="doc_type" value="Invoice" readonly/><br /><br />
+    <label>Company:</label>
+    <input type="text" name="com"><br /><br />
+    <label>To-Date:</label>
+    <input type="date" name="date1" /><br /><br />
+    <label>From-Date:</label>
+    <input type="date" name="date2" /><br /><br />
+    <label>Amount:</label>
+    <input type="text" name="amount" /><br /><br />
+    <label>FullText:</label>
+    <input type="text" name="full"><br /><br />
+    <button type="submit" class="submitbtn">Submit</button><br>
+    <button type="reset" class="submitbtn">Reset</button><br /><br />
+    <a href="{% url 'users:user_home' %}"><< Go Back To Home</a>  
+    </li>
+    </ul>
+  </form>
+  </div>
+
+  
+  {% elif type == "Email" %}
+    <div id="container1">
+    <center><h1>Search Documents</h1></center>
+    <hr>
+    <form action="search" method="post" target="_self">
+      {% csrf_token %}
+      <ul>
+      <li> 
+      <label>Document Type:</label>
+      <input type="text" name="doc_type" value="Email"  readonly/><br /><br />
+      <label>To:</label>
+      <input type="text" name="To" /><br /><br />
+      <label>From:</label>
+      <input type="text" name="From" /><br /><br />
+      <label>Body:</label>
+      <input type="text" name="Body" /><br /><br />
+      <label>Subject:</label>
+      <input type="text" name="Subject" /><br /><br />
+      <label>Start_Date:</label>
+      <input type="date" name="Start_Date" /><br /><br />
+      <label>End_Date:</label>
+      <input type="date" name="End_Date" /><br /><br />
+      <button type="submit" class="submitbtn">Submit</button><br>
+      <button type="reset" class="submitbtn">Reset</button><br /><br />
+      <a href="{% url 'users:user_home' %}"><< Go Back To Home</a>  
+      </li>
+      </ul>
+    </form>
+    </div>
+  
+  {% elif type == "Others" %}
+  <div id="container1">
+  <center><h1>Search Documents</h1></center>
+  <hr>
+  <form action="search" method="post" target="_self">
+    {% csrf_token %}
+    <ul>
+    <li> 
+    <label>Document Type:</label>
+    <input type="text" name="doc_type" value="Others" readonly/><br /><br />
+    <label>Keyword:</label>
+    <input type="text" name="keyword" placeholder="Keyword" autocomplete="off" /><br /><br />
+    <label>Search in:</label>
+    <input type="checkbox" id="header" name="header" />Header
+    <input type="checkbox" id="Paragraph" name="Paragraph" />Paragraph<br /><br />
+    <button type="submit" class="submitbtn">Submit</button><br>
+    <button type="reset" class="submitbtn">Reset</button><br /><br />
+    <a href="{% url 'users:user_home' %}"><< Go Back To Home</a>  
+    </li>
+    </ul>
+  </form>
+  </div>
+
+  {% elif type == "All" %}
+  <div id="container1">
+  <center><h1>Search Documents</h1></center>
+  <hr>
+  <form action="search" method="post" target="_self">
+    {% csrf_token %}
+    <ul>
+    <li> 
+    <label>Document Type:</label>
+    <input type="text" name="doc_type" value="All"  readonly/><br /><br />
+    <label>Keywords:</label>
+    <input type="text" name="content_text" /><br /><br />
+    <label>File_name:</label>
+    <input type="text" name="file_name" /><br /><br />
+    <button type="submit" class="submitbtn">Submit</button><br>
+    <button type="reset" class="submitbtn">Reset</button><br /><br />
+    <a href="{% url 'users:user_home' %}"><< Go Back To Home</a>  
+    </li>
+    </ul>
+  </form>
+  </div>
+
+  {% else %}
+  <div id="container2">
+  <center><h1>Select Document Type</h1></center>
+  <hr>  
+    <form action="search" method="get">
+      <label for="type"></label>
+      <select  id="type" name="type">
+        <option value="Invoice">Invoice</option>
+        <option value="Email">Email</option>
+        <option value="Others">Others</option>
+        <option value="All">All</option>
+      </select>
+      <input type="submit" />
+   </form>
+  </div>
+
+  {% endif%}
+
+</body>   
+</html>

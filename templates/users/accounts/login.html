@@ -1,0 +1,136 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<style>
+ /* Split the screen in half */
+.split {
+  height: 100%;
+  width: 50%;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  overflow-x: hidden;
+  padding-top: 20px;
+}
+
+/* Control the left side */
+.left {
+  left: 0;
+  background-color: beige;
+}
+
+/* Control the right side */
+.right {
+  right: 0;
+  background-color:antiquewhite;
+}
+
+/* If you want the content centered horizontally and vertically */
+.centered {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+}
+</style> 
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>ADF User | Log in</title>
+  <!-- Tell the browser to be responsive to screen width -->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href='{% static "plugins/fontawesome-free/css/all.min.css" %}'>
+  <!-- Ionicons -->
+  <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+  <!-- icheck bootstrap -->
+  <link rel="stylesheet" href='{% static "plugins/icheck-bootstrap/icheck-bootstrap.min.css" %}'>
+  <!-- Theme style -->
+  <link rel="stylesheet" href='{% static "dist/css/adminlte.min.css" %}'>
+  <!-- Google Font: Source Sans Pro -->
+  <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
+</head>
+
+<body class="hold-transition login-page">
+  
+  <!-- splitting towards right -->
+  <div class="split right">
+  <div class = "centered">
+  <div class="login-box">
+  
+  <div class="card">
+    <div class="card-body login-card-body">
+      <p class="login-box-msg">login to start your session</p>
+
+      <form action="/user/doLogin" method="post">
+        {% csrf_token %}
+        <div class="input-group mb-3">
+          <input type="email" class="form-control" placeholder="Email" name="email">
+          <div class="input-group-append">
+            <div class="input-group-text">
+              <span class="fas fa-envelope"></span>
+            </div>
+          </div>
+        </div>
+        <div class="input-group mb-3">
+          <input type="password" class="form-control" placeholder="Password" name="password">
+          <div class="input-group-append">
+            <div class="input-group-text">
+              <span class="fas fa-lock"></span>
+            </div>
+          </div>
+        </div>
+        <!-- <div class="input-group mb-3">
+           <div class="g-recaptcha" data-sitekey="6LfEkVIbAAAAADkmd8TuWrFGhdYYDTH3SVMxUor-"></div>
+        </div>
+        <div class="row"> -->
+          <!-- /.col -->
+          <div class="col-12">
+            <button type="submit" class="btn btn-primary btn-block">Log In</button>
+          </div><br />
+          <div class="col-12 text-center">
+            <a href="{% url 'password_reset'%}">Forgot Password ??</a>
+          </div>
+        </div>  
+        <div class="row">
+          {% if messages %}
+          <div class="col-12">
+            {% for message in messages %}
+            {% if message.tags == 'error' %}
+            <div class="alert alert-danger" style="margin-top:10px">{{ message }}</div>
+            {% endif %}
+            {% endfor %}
+          </div>
+          {% endif %}
+          <!-- /.col -->
+        </div>
+      </form>
+      <!-- /.social-auth-links -->
+    </div>
+    <!-- /.login-card-body -->
+  </div>
+</div>
+<!-- /.login-box -->
+
+<!-- jQuery -->
+<script src='{% static "plugins/jquery/jquery.min.js" %}'></script>
+<!-- Bootstrap 4 -->
+<script src='{% static "plugins/bootstrap/js/bootstrap.bundle.min.js" %}'></script>
+<!-- AdminLTE App -->
+<script src='{% static "dist/js/adminlte.min.js" %}'></script>
+
+<!-- <script src="https://www.google.com/recaptcha/api.js" async defer></script> -->
+</div>
+</div>
+
+<!-- splitting towards left -->
+<div class="split left">
+  <div class="centered">
+    <h2>ADF Management System</h2>
+  </div>
+</div>
+
+</body>
+</html>

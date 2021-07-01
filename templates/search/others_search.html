@@ -1,0 +1,32 @@
+{% extends 'search/base.html' %}
+
+{% block content %}
+
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+<style>
+    th{ 
+        color:darkslategrey;
+            }
+</style>
+
+<script src="https://www.kryogenix.org/code/browser/sorttable/sorttable.js"></script>
+
+<table class="table table-stripped&sortable">
+    <th>Document Name</th>
+    <th>Document Link</th>
+    <th>Page No.</th>
+    {% for list in docs %}
+     {% for doc in list %}  
+       <tr> 
+        <td> {{doc.file_name}} </td>
+        <td> <a href="{{MEDIA_URL}}{{doc.file_path}}/{{doc.file_name}}/#page={{doc.page_number}} ">Link</a></td>
+        <td> {{doc.page_number}}</td>
+       </tr> 
+       {% endfor %}
+    {% endfor %}  
+    
+       
+</table>
+
+{% endblock %}
